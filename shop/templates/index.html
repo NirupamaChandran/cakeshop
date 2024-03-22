@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%block main_block%}
+<div class="container">
+    {%for cat in data%}
+    <div class=" mt-5 container d-flex justify-content-evenly">
+        <div class="card text-center mb-3  " style="width:200px; height: 80px;">
+            <div class="card-body ">
+              <!-- <h5 class="card-title">{{cat.name}}</h5> -->
+              <a href="{%url 'cake-list' cat.id %}">{{cat.category_name}}</a>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}
