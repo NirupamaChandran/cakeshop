@@ -2,9 +2,9 @@
 {%block main_block%}
 <div class="container">
     {%for cat in data%}
-    <div class=" mt-5 container d-flex justify-content-evenly">
-        <div class="card text-center mb-3  " style="width:200px; height: 80px;">
-            <div class="card-body ">
+    <div class=" mt-5 container d-flex justify-content-evenly  bg-black bg-gradient border rounded-5" style="height: 300px; width: 600px;">
+        <div class="card text-center mx-auto my-auto  bg-yellow bg-gradient fs-4 fw-bolder fst-italic" style="border-radius:80% 20% 85% 15% / 45% 61% 39% 55%; width: 200px; height: 180px; " >
+            <div class="card-body mt-5 py-8">
               <!-- <h5 class="card-title">{{cat.name}}</h5> -->
               <a href="{%url 'cake-list' cat.id %}">{{cat.category_name}}</a>
             </div>

@@ -4,35 +4,47 @@
 
 
 
-<section class="overflow-hidden">
-  <div class="mx-auto max-w-5xl px-5 py-24">
+<section class="overflow-hidden ">
+  <div class="mx-auto max-w-5xl px-4 py-20 border border-dark rounded-5 shadow mt-3 bg-black bg-gradient">
     <div class="mx-auto flex flex-wrap items-center lg:w-4/5">
       <img alt="Nike Air Max 21A" class="h-64 w-full rounded object-cover lg:h-96 lg:w-1/2" src="{{data.image.url}}" />
       <div class="mt-6 w-full lg:mt-0 lg:w-1/2 lg:pl-10">
-        <h2 class="text-sm font-semibold tracking-widest text-gray-500">
+        <h2 class="text-sm font-semibold tracking-widest text-white">
           {{data.cakecategory.category_name}}
         </h2>
-        <h1 class="my-4 text-3xl font-semibold text-black"> {{data.cake_object.name}}</h1>
+        <h1 class="my-4 text-3xl font-semibold text-white"> {{data.cake_object.name}}</h1>
         <div class="my-4 flex items-center">
         </div>
-        <p class="mt-3 text-sm text-gray-600">
+        <p class="mt-3 text-sm text-white">
           Shape: {{data.shape}}
         </p>
-        <p class="mt-3 text-sm text-gray-600">
+        <p class="mt-3 text-sm text-white">
           Flavour: {{data.flavour_object.flavour_name}}
         </p>
-        <p class="mt-3 text-sm text-gray-600">
+        <p class="mt-3 text-sm text-white">
           Weight: {{data.weight}}
         </p>
+
+
+       
+
 
 
 
         <form action="{%url 'add-to-basket' data.id %}" method="post">
           {%csrf_token%}
+
+
+          <p class="mt-3">
+            <label for="" class="text-white">Quantity </label> <input type="text" value="1"  name="qty" class="px-2 border border-gray text-gray-600" style="width:25px ;"/>
+           </p>
+
+
+
           <div class="mb-5 mt-6 flex items-center pb-5">
 
             <div class="ml-auto flex items-center">
-              <span class="mr-3 text-sm font-semibold">Occasion</span>
+              <span class="mr-3 text-sm font-semibold text-white">Occasion</span>
               <div class="relative">
                 <select
                   class="appearance-none rounded border border-gray-300 py-2 pl-3 pr-10 text-sm focus:border-black focus:outline-none focus:ring-2 focus:ring-black"
@@ -56,11 +68,11 @@
           </div>
 
           <div class="flex items-center justify-between">
-            <span class="title-font text-xl font-bold text-gray-900">
+            <span class="title-font text-xl font-bold text-white">
               {{data.price}}/-
             </span>
             <button type="submit"
-              class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+              class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-dark shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
               Add to Cart
             </button>
           </div>
