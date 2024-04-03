@@ -1,8 +1,13 @@
 {%extends 'base.html'%}
 {%block main_block%}
-<div class="container">
+<div class="container p-5" style="background-image: url('/shop/images/Designer (6).png');">
+    <!-- <div>
+        <img src="/shop/images/Designer (2).png" alt="" class="h-full w-full"> -->
+
+        <!-- class="bg-success p-2 text-white bg-opacity-75" -->
+    
     {%for cat in data%}
-    <div class=" mt-5 container d-flex justify-content-evenly  bg-black bg-gradient border rounded-5" style="height: 300px; width: 600px;">
+    <div class=" mt-5 container d-flex justify-content-evenly  bg-black  bg-opacity-75  rounded-5" style="height: 300px; width: 600px;">
         <div class="card text-center mx-auto my-auto  bg-yellow bg-gradient fs-4 fw-bolder fst-italic" style="border-radius:80% 20% 85% 15% / 45% 61% 39% 55%; width: 200px; height: 180px; " >
             <div class="card-body mt-5 py-8">
               <!-- <h5 class="card-title">{{cat.name}}</h5> -->
@@ -11,5 +16,6 @@
         </div>
     </div>
     {%endfor%}
+    <!-- </div> -->
 </div>
 {%endblock%}
