@@ -6,7 +6,10 @@ from shop.forms import RegistrationForm,LoginForm
 from django.contrib.auth import authenticate,login,logout
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.cache import never_cache
+from django.contrib import messages
 
+from shop.decorators import signin_required,owner_permission_required
 from shop.models import Category,Cake,CakeVarient,Occasion,BasketItem,Order,OrderItems
 
 
@@ -44,12 +47,15 @@ class SignInView(View):
         return render(request,"login.html",{"form":form})
     
 
+
+@method_decorator([signin_required,never_cache],name="dispatch")
 class IndexView(View):
     def get(self,request,*args,**kwargs):
         qs=Category.objects.all()
         return render(request,"index.html",{"data":qs})
     
 
+@method_decorator([signin_required,never_cache],name="dispatch")
 class CakeListView(View):
     def get(self,request,*args,**kwargs):
         id=kwargs.get("pk")
@@ -58,6 +64,7 @@ class CakeListView(View):
                 
 
 
+@method_decorator([signin_required,never_cache],name="dispatch")
 class CakeDetailView(View):
     def get(self,request,*args,**kwargs):
         id=kwargs.get("pk")#cake_id
@@ -65,6 +72,7 @@ class CakeDetailView(View):
         return render (request,"detail.html",{"data":qs})
     
 
+@method_decorator([signin_required,never_cache],name="dispatch")
 class AddToBasketView(View):
     def post(self,request,*args,**kwargs):
         occasion=request.POST.get("occasion")
@@ -81,12 +89,14 @@ class AddToBasketView(View):
         return redirect("index")
     
 
+@method_decorator([signin_required,never_cache],name="dispatch")
 class BasketItemListView(View):
     def get(self,request,*args,**kwargs):
         qs=request.user.cart.cartitem.filter(is_order_placed=False)
         return render(request,"cart_list.html",{"data":qs})
     
 
+@method_decorator([signin_required,owner_permission_required,never_cache],name="dispatch")
 class BasketItemUpdateView(View):
     def post(self,request,*args,**kwargs):
         action=request.POST.get("counterbutton")
@@ -101,6 +111,7 @@ class BasketItemUpdateView(View):
         return redirect("basket-items")
     
 
+@method_decorator([signin_required,owner_permission_required,never_cache],name="dispatch")
 class BasketItemRemoveView(View):
     def get(self,request,*args,**kwargs):
         id=kwargs.get("pk")
@@ -108,7 +119,7 @@ class BasketItemRemoveView(View):
         return redirect("basket-items")
     
 
-
+@method_decorator([signin_required,never_cache],name="dispatch")
 class CheckOutView(View):
     def get(self,request,*args,**kwargs):
         return render(request,"checkout.html")
@@ -170,7 +181,7 @@ class PaymentVerificationView(View):
         try:
             client.utility.verify_payment_signature(data)
             order_obj=Order.objects.get(order_id=data.get("razorpay_order_id"))
-            order_obj.is_paid-True
+            order_obj.is_paid=+True
             order_obj.save()
             print("*************Transaction Completed******************")
         except:
@@ -192,6 +203,7 @@ class OrderItemRemoveView(View):
         return redirect("order-summary")
 
 
+@method_decorator([signin_required,never_cache],name="dispatch")
 class SignOutView(View):
     def get(self,request,*args,**kwargs):
         logout(request)

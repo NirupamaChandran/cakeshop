@@ -59,10 +59,22 @@
       </div>
 
       <div class="me-4">
-        <a href="{% url 'basket-items' %}" class="icon">
+        <!-- <a href="{% url 'basket-items' %}" class="icon">
           <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
           <span class="d-flex text-dark">{{cart_count}}</span>
+        </a> -->
+        <!-- <a href="{% url 'basket-items' %}" class="icon">
+          <i class="bx bx-cart"></i>
+          <span class="d-flex">{{cart_count}}</span>
+        </a> -->
+
+
+        
+        <a href="{% url 'basket-items' %}">
+        <i class="fa" style="font-size:24px">&#xf07a;</i>
+        <span> {{cart_count}}</span>
         </a>
+
       </div>
 
       <div class="hidden lg:block">
