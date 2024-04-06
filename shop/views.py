@@ -14,7 +14,7 @@ from shop.models import Category,Cake,CakeVarient,Occasion,BasketItem,Order,Orde
 
 
 KEY_ID="rzp_test_qEfodDQFfhXaCq"
-
+KEY_SECRET="42J5m041xFFF9T14x7bgIqB2"
 
 
 class SignUpView(View):
